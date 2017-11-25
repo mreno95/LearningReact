@@ -6,20 +6,34 @@ var createReactClass = require('create-react-class'); // added because React.cre
 var TodoComponent = createReactClass({
   //pass methods, only one require is render method
   //class TodoComponent extends React.createComponent {
+  getInitialState:function(){
+    return {
+      todos: ['make hot chocolate', 'watch Elf movie', 'decorate the Christmas tree'],//add a comma and you can add additional states
+      daysTilXmas: 31
+    }
+  }, //initial state and give it data which we then called below
   render:function(){
+    //changing state by using .setState
+    var daysLeft = setTimeout(function(){
+      this.setState({
+        daysTilXmas: 30
+      })
+    }.bind(this),5000); //have to do .bind to be able to use this.setState earlier, but not sure I understand why
     return(
       // inside return is where JSX is in action. everything in the return method needs to be contained in one parent tag
-      <div>
-        <h1>{this.props.mssg}</h1>
-        <p><strong>Name: </strong>{this.props.icecream.name}</p>
-        <p><strong>Type: </strong>{this.props.icecream.type}</p>
-        <p><strong>Calories: </strong>{this.props.icecream.calories}</p>
+      <div id="todo-list">
+        <p>Its the most wonderful time of the year...</p>
+        <p>{this.state.daysTilXmas} Days Til Christmas</p>
+        <ul>
+          <li>{this.state.todos[0]}</li>
+          <li>{this.state.todos[1]}</li>
+          <li>{this.state.todos[2]}</li>
+        </ul>
       </div>
     );
-  }
+  } //render
 });
 
-var myIcecream = {name:'Salted Caramel', type:'fro-yo', calories:'120'};
 
 // Put component into HTML page
-ReactDOM.render(<TodoComponent mssg="I like icecream" icecream={myIcecream} />, document.getElementById('todo-wrapper'));
+ReactDOM.render(<TodoComponent />, document.getElementById('todo-wrapper'));

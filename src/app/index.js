@@ -16,9 +16,9 @@ var TodoComponent = createReactClass({
     var todos = this.state.todos;
     todos = todos.map(function(item, index){
       return(
-        <li>{item}</li>
+        <TodoItem item={item} key={index} /> //nested component, passing it the items from the local version of todos array. Because we are outputting this component for each item in the array we need to give each component a key so react can have an identifier on that component
       );
-    });//this is going to allow us to cycle through the arraw and create a list item for each array item
+    });
       // inside return is where JSX is in action. everything in the return method needs to be contained in one parent tag
     return(
       <div id="todo-list">
@@ -29,6 +29,18 @@ var TodoComponent = createReactClass({
   } //render
 });
 
+//Create TodoItem component
+var TodoItem = createReactClass({
+  render: function(){
+    return (
+      <li>
+        <div className="todo-item">
+          <span className="item-name">{this.props.item}</span>
+        </div>
+      </li>
+    );
+  }
+});
 
 // Put component into HTML page
 ReactDOM.render(<TodoComponent />, document.getElementById('todo-wrapper'));

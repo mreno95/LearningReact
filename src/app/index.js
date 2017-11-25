@@ -8,27 +8,22 @@ var TodoComponent = createReactClass({
   //class TodoComponent extends React.createComponent {
   getInitialState:function(){
     return {
-      todos: ['make hot chocolate', 'watch Elf movie', 'decorate the Christmas tree'],//add a comma and you can add additional states
-      daysTilXmas: 31
+      todos: ['make hot chocolate', 'watch Elf movie', 'decorate the Christmas tree', 'make Christmas cookies']//add a comma and you can add additional states
     }
   }, //initial state and give it data which we then called below
   render:function(){
-    //changing state by using .setState
-    var daysLeft = setTimeout(function(){
-      this.setState({
-        daysTilXmas: 30
-      })
-    }.bind(this),5000); //have to do .bind to be able to use this.setState earlier, but not sure I understand why
-    return(
+    //creating a local version todos array in the render function so we can manipulate it in this render function without changing the original data
+    var todos = this.state.todos;
+    todos = todos.map(function(item, index){
+      return(
+        <li>{item}</li>
+      );
+    });//this is going to allow us to cycle through the arraw and create a list item for each array item
       // inside return is where JSX is in action. everything in the return method needs to be contained in one parent tag
+    return(
       <div id="todo-list">
         <p>Its the most wonderful time of the year...</p>
-        <p>{this.state.daysTilXmas} Days Til Christmas</p>
-        <ul>
-          <li>{this.state.todos[0]}</li>
-          <li>{this.state.todos[1]}</li>
-          <li>{this.state.todos[2]}</li>
-        </ul>
+        <ul>{todos}</ul>
       </div>
     );
   } //render

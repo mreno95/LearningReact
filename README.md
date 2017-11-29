@@ -1,5 +1,5 @@
 # react-playlist
-All the course files for the Net Ninja React tutorial playlist on YouTube
+All the course files for the Net Ninja React tutorial playlist on YouTube. Completed by Morgan Reno with commented notes
 
-# How to use these files
-Each of the branches in this repo refers to the starting point of a particular lesson in the playlist. Just checkout the branch / lesson that you need.
+# File Setup
+Each branch is a different lesson in the YouTube playlist so you can see the progression throughout the lessons. 

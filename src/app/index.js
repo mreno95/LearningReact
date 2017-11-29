@@ -5,6 +5,7 @@ require('./css/index.css');
 
 // Module Requires
 var TodoItem = require('./todoItem');
+var AddItem = require('./addItem');
 
 // Create component (not using es6 classes)
 var TodoComponent = createReactClass({
@@ -30,6 +31,7 @@ var TodoComponent = createReactClass({
       <div id="todo-list">
         <p>Its the most wonderful time of the year...</p>
         <ul>{todos}</ul>
+        <AddItem onAdd={this.onAdd} />
       </div>
     );
   }, //render
@@ -43,7 +45,15 @@ var TodoComponent = createReactClass({
     this.setState({
       todos: updatedTodos
     });
+  },
+  onAdd: function(item){
+    var updatedTodos = this.state.todos;
+    updatedTodos.push(item);
+    this.setState({
+      todos: updatedTodos
+    })
   }
+  //this function creates a variable and sets it equal to todos array, then it "pushes" or adds the item to the array and changes the state of todos to updatedTodos
 });
 
 // Put component into HTML page
